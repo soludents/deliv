@@ -3,28 +3,42 @@
 </header>
 
 <section *ngIf="(products$ | async)" class="navbar">
-
   <span class="navbar-item">
-    <app-button [title]="'Add'" [icon]="'fa-plus'" (click)="onAdd($event)"></app-button>
+    <app-button
+      [title]="'Add'"
+      [icon]="'fa-plus'"
+      (onButtonClicked)="onAdd($event)"
+    ></app-button>
   </span>
 
   <span class="navbar-item">
-    <app-search [placeholder]="'Search..'" [icon]="'fa-search'" (search)="onSearch($event)"></app-search>
+    <app-search
+      [placeholder]="'Search..'"
+      [icon]="'fa-search'"
+      (search)="onSearch($event)"
+    ></app-search>
   </span>
 
   <span class="navbar-item">Sort by</span>
 
   <span class="navbar-item">
-    <app-select [options]="['Name', 'Price']" (selectChange)="onSelectChange($event)"></app-select>
+    <app-select
+      [options]="['Name', 'Price']"
+      (selectChange)="onSelectChange($event)"
+    ></app-select>
   </span>
-
 </section>
 
 <section *ngIf="(products$ | async)?.length" class="navbar-items">
   <nav>
     <ul>
-      <ng-container *ngFor="let product of (products$ | async) | slice: pagination * 5: (pagination * 5) + 5">
-
+      <ng-container
+        *ngFor="
+          let product of (products$
+            | async
+            | slice: pagination * 5:pagination * 5 + 5)
+        "
+      >
         <li class="product-item">
           <app-store-item
             [name]="product?.name"
@@ -35,21 +49,20 @@
           >
           </app-store-item>
         </li>
-
       </ng-container>
 
       <li class="pagination">
         <app-pagination
           [currentPage]="pagination"
           [limit]="(products$ | async)?.length"
-          (paginate)="onPaginate($event)">
+          (paginate)="onPaginate($event)"
+        >
         </app-pagination>
       </li>
-
     </ul>
   </nav>
 
-  <article *ngIf="selectedProductForDetail$ | async">
+  <article *ngIf="(selectedProductForDetail$ | async)">
     <app-store-item-detail
       [name]="(selectedProductForDetail$ | async)?.name"
       [description]="(selectedProductForDetail$ | async)?.description"
@@ -65,10 +78,10 @@
   <app-pagination
     [currentPage]="pagination"
     [limit]="(products$ | async)?.length"
-    (paginate)="onPaginate($event)">
+    (paginate)="onPaginate($event)"
+  >
   </app-pagination>
 </section>
-
 
 <section *ngIf="!(products$ | async)?.length" class="navbar">
   No data to display.
