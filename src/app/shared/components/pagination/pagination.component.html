@@ -1,0 +1,13 @@
+<div class="pagination">
+
+  <a class="paginate" (click)="onPaginate(currentPage - 1)" [ngClass]="{ 'disabled': (currentPage + 1) <= 1 }">
+    <i class="fa fa-chevron-left"></i> Prev page
+  </a>
+
+  <div>{{currentPage + 1}} of {{ getTotalPages(currentPage, limit) }}</div>
+
+  <a class="paginate" (click)="onPaginate(currentPage + 1)" [ngClass]="{ 'disabled': (currentPage + 1) >= getTotalPages(currentPage, limit) }">
+    Next page <i class="fa fa-chevron-right"></i>
+  </a>
+
+</div>

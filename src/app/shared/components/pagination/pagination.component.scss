@@ -1,0 +1,13 @@
+.pagination {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+.paginate {
+  cursor: pointer;
+}
+

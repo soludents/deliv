@@ -1,0 +1,7 @@
+<select #select (change)="onSelectChange(select?.value)">
+
+  <ng-container *ngFor="let option of options">
+    <option [value]="option">{{option}}</option>
+  </ng-container>
+
+</select>

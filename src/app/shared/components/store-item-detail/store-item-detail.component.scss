@@ -1,0 +1,33 @@
+.form-group {
+  display: grid;
+  padding: 10px;
+}
+
+label {
+  padding: 10px 0 10px 0;
+}
+
+.price {
+  width: 50%;
+
+  > input {
+    margin-right: 10px;
+  }
+}
+
+.submit {
+  float: right;
+}
+
+.detail-form {
+  margin-bottom: 50px;
+}
+
+@media (max-width: 620px) {
+  h1 {
+    padding: 10px;
+  }
+  .submit {
+    margin-right: 10px;
+  }
+}

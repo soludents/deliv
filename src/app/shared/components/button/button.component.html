@@ -1,0 +1,4 @@
+<button [disabled]="disabled" class="navbar-item" type="button" (click)="onButtonClick($event)" [ngClass]="{'float-right': floatRight}">
+  <i *ngIf="icon" class="fa {{icon}}"></i>
+    {{title}}
+</button>

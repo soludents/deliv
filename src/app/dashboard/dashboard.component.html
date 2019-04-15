@@ -1,0 +1,79 @@
+<header>
+  <div class="title">My Store</div>
+</header>
+
+<section *ngIf="(products$ | async)" class="navbar">
+
+  <span class="navbar-item">
+    <app-button [title]="'Add'" [icon]="'fa-plus'" (click)="onAdd($event)"></app-button>
+  </span>
+
+  <span class="navbar-item">
+    <app-search [placeholder]="'Search..'" [icon]="'fa-search'" (search)="onSearch($event)"></app-search>
+  </span>
+
+  <span class="navbar-item">Sort by</span>
+
+  <span class="navbar-item">
+    <app-select [options]="['Name', 'Price']" (selectChange)="onSelectChange($event)"></app-select>
+  </span>
+
+</section>
+
+<section *ngIf="(products$ | async)?.length" class="navbar-items">
+  <nav>
+    <ul>
+      <ng-container *ngFor="let product of (products$ | async) | slice: pagination * 5: (pagination * 5) + 5">
+
+        <li class="product-item">
+          <app-store-item
+            [name]="product?.name"
+            [description]="product?.description"
+            [thumbnailUrl]="product?.thumbnailUrl"
+            [active]="product?.id === (selectedProductForDetail$ | async)?.id"
+            (click)="setSelectedProductForEdit(product)"
+          >
+          </app-store-item>
+        </li>
+
+      </ng-container>
+
+      <li class="pagination">
+        <app-pagination
+          [currentPage]="pagination"
+          [limit]="(products$ | async)?.length"
+          (paginate)="onPaginate($event)">
+        </app-pagination>
+      </li>
+
+    </ul>
+  </nav>
+
+  <article *ngIf="selectedProductForDetail$ | async">
+    <app-store-item-detail
+      [name]="(selectedProductForDetail$ | async)?.name"
+      [description]="(selectedProductForDetail$ | async)?.description"
+      [imageUrl]="(selectedProductForDetail$ | async)?.url"
+      [price]="(selectedProductForDetail$ | async)?.price"
+      (save)="onProductSave($event)"
+    >
+    </app-store-item-detail>
+  </article>
+</section>
+
+<section class="pagination-small">
+  <app-pagination
+    [currentPage]="pagination"
+    [limit]="(products$ | async)?.length"
+    (paginate)="onPaginate($event)">
+  </app-pagination>
+</section>
+
+
+<section *ngIf="!(products$ | async)?.length" class="navbar">
+  No data to display.
+</section>
+
+<footer>
+  <p>Footer</p>
+</footer>

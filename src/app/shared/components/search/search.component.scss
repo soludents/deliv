@@ -1,0 +1,22 @@
+.search {
+  position: relative;
+  color: #aaa;
+  font-size: 16px;
+  display: inline-block;
+
+  input {
+    width: 250px;
+    height: 26px;
+    background: #fcfcfc;
+    border: 1px solid #aaa;
+    border-radius: 17px;
+    box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset;
+    text-indent: 32px;
+  }
+
+  .fa-search {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+}

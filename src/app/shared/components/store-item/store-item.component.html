@@ -1,0 +1,22 @@
+<div class="blog-card" [ngClass]="{'active' : active }">
+
+  <div class="pb-upper">
+
+    <div class="pb-image">
+      <app-image [tiltEnabled]="true" [width]="80" [height]="60" [url]="thumbnailUrl"></app-image>
+    </div>
+
+    <div class="pb-description">
+      <div class="title-padding-up">{{name}}</div>
+      <div class="title-padding">{{description}}</div>
+    </div>
+
+  </div>
+
+  <div class="pb-lower">
+    <div class="lower-action">
+      <app-button [title]="'Delete'"></app-button>
+    </div>
+  </div>
+
+</div>
